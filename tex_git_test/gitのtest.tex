@@ -1,6 +1,8 @@
 \documentclass{ujarticle}
-\usepackage{booktabs}
-%opening
+\usepackage{booktabs} %表
+\usepackage[dvipdfmx]{graphicx} %画像の出力
+\usepackage{bmpsize} %画像のサイズの読み込み
+
 \title{hoge}
 \author{イロハウタ}
 
@@ -31,7 +33,18 @@
 		\bottomrule
 	\end{tabular}%
 	\label{tab:addlabel}%
+	
+
 \end{table}%
 
+	
+\begin{figure}
+\centering
+\includegraphics[width=1cm]{testimg.jpg}
+\caption{}
+\label{fig:acex1-1}
+\end{figure}
 
+
+\includegraphics[width=5cm]{testimg.jpg}
 \end{document}

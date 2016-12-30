@@ -1,0 +1,35 @@
+texのメモ
+
+・pdfファイルの出力
+ターミナル等で
+extractbb 画像名.pdf
+と入力するとxbbファイル（画像の情報）が出力され、texで動作するようになる
+
+・bmpsizeによる画像の出力エラー
+-----
+最新の状態の TeX Live 2014 で bmpsize を利用してビットマップ画像をロードする際に，問題を発見しましたので，ご報告しておきます。
+
+\documentclass{article}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{bmpsize}
+\def\sample{\includegraphics{sample.jpg}}
+\setbox0\hbox{\sample}
+\begin{document}
+\fbox{\sample}
+\end{document}
+
+このソースを e-(u)pLaTeX + dvipdfmx でコンパイルすると，dvipdfmxが次のような警告を出し，画像が正しく貼り込まれません。
+
+dvipdfmx:warning: Error locating image file "IMG1"
+dvipdfmx:warning: Specified (image) object doesn't exist: IMG1
+dvipdfmx:warning: Interpreting special command uxobj (pdf笑顔 failed.
+dvipdfmx:warning: >> at page="1" position="(152.1, 574.261)" (in PDF)
+dvipdfmx:warning: >> xxx "pdf:uxobj @IMG1"
+
+・\setbox0 の行を削除する
+・\fbox{\sample} の部分を \fbox{\usebox0} とする
+・bmpsize を使わず extractbb を使用する
+
+のいずれかの対策を採れば正しく貼り込まれますが。
+-----
+
